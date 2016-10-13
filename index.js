@@ -1,15 +1,14 @@
 var Bottr = require('bottr')
-var BottrApp = require('bottr-app')
 
 var bot = new Bottr.Bot()
 bot.use(new Bottr.FacebookMessengerClient())
 
-bot.on('message_received', function (message, session) {
-    if(message.text.match(/Hoje tem treino?/)) {
-        session.send("Tem sim!")
-    } else {
-        session.send("Não entendi. =/")
-    }
+bot.hears(/Hoje tem treino?/, function (message, session) {
+    session.send("Tem sim!")
+})
+
+bot.hears([/.+/], function(message, session) {
+    session.send("Não entendi. =/")
 })
 
 bot.listen()
