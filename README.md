@@ -1,5 +1,5 @@
 # EquilibraBot
->> Facebook Messenger Bot
+> Facebook Messenger Bot
 
 The main objective of this bot is to increase the interaction with students and goers of Equilibra Gym at Porto Alegre/RS.
 
