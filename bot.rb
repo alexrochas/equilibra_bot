@@ -51,15 +51,30 @@ Bot.on :postback do |postback|
   postback.payload   # => 'EXTERMINATE'
 
   if postback.payload == 'VALORES'
-    puts 'Primeira aula de graça!'
+    Bot.deliver(
+        recipient: message.sender,
+        message: {
+            text: 'Primeira aula de graça!'
+        }
+    )
   end
 
   if postback.payload == 'HORARIOS'
-    puts 'Seg a Sex das 8:00 as 22:00'
+    Bot.deliver(
+        recipient: message.sender,
+        message: {
+            text: 'Seg a Sex das 8:00 as 22:00'
+        }
+    )
   end
 
   if postback.payload == 'BIRL'
-    puts "BIIIIIIIIIIRRRRRRLLLLLLLLLLLLLL"
+    Bot.deliver(
+        recipient: message.sender,
+        message: {
+            text: 'BIIIIIIIIIIRRRRRRLLLLLLLLLLLLLL'
+        }
+    )
   end
 end
 
