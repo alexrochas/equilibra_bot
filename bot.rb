@@ -13,12 +13,54 @@ Bot.on :message do |message|
   message.text        # => 'Hello, bot!'
   message.attachments # => [ { 'type' => 'image', 'payload' => { 'url' => 'https://www.example.com/1.jpg' } } ]
 
-  Bot.deliver(
-      recipient: message.sender,
-      message: {
-          text: 'Hello, human!'
-      }
-  )
+  if message.text =~ /Olá!/
+    Bot.deliver(
+        recipient: message.sender,
+        message: {
+            text: 'Hello, human!'
+        }
+    )
+  end
+
+  if message.text =~ /Me conta da academia./
+    Bot.deliver(
+        recipient: message.sender,
+        message: {
+            attachment: {
+                type: 'template',
+                payload: {
+                    template_type: 'button',
+                    text: 'Então, sobre o que você quer saber?',
+                    buttons: [
+                        { type: 'postback', title: 'Horários', payload: 'HORARIOS' },
+                        { type: 'postback', title: 'Valores', payload: 'VALORES' },
+                        { type: 'postback', title: 'EquilibraBot?', payload: 'BIRL' }
+                    ]
+                }
+            }
+        }
+    )
+  end
+end
+
+
+Bot.on :postback do |postback|
+  postback.sender    # => { 'id' => '1008372609250235' }
+  postback.recipient # => { 'id' => '2015573629214912' }
+  postback.sent_at   # => 2016-04-22 21:30:36 +0200
+  postback.payload   # => 'EXTERMINATE'
+
+  if postback.payload == 'VALORES'
+    puts 'Primeira aula de graça!'
+  end
+
+  if postback.payload == 'HORARIOS'
+    puts 'Seg a Sex das 8:00 as 22:00'
+  end
+
+  if postback.payload == 'BIRL'
+    puts "BIIIIIIIIIIRRRRRRLLLLLLLLLLLLLL"
+  end
 end
 
 Facebook::Messenger.config.access_token = ENV['MESSENGER_ACCESS_TOKEN']
