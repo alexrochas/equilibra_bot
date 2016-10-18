@@ -20,7 +20,7 @@ Bot.on :message do |message|
   )
 end
 
-Facebook::Messenger.config.access_token = ENV['MESSENGER_ACCESS_TOKEN']
+Facebook::Messenger.config.access_token = 'EAADkaiNsHSYBAFWTsjcQDNRi0JutyJtBXiknbesx6mdlPLiTKvpcxR9mBNMqjTtXPCEElCWR21cgblR88p3noWzseieTHddQZA5srK2y9c4sl3BQZAsaTZCEbGhFnm7yuLGMkmKNCFT8XvZCKNtu6jdTBwtkkovGC8ZAUDq3TaAZDZD'
 Facebook::Messenger.config.app_secret = '__app_secret_here__'
-Facebook::Messenger.config.verify_token = ENV['MESSENGER_VERIFY_TOKEN']
+Facebook::Messenger.config.verify_token = 'xIn9f1mYAi220VU729805f7o45P5Ad16ENV'
 Facebook::Messenger::Subscriptions.subscribe
