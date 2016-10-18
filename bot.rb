@@ -4,6 +4,7 @@ require 'facebook/messenger'
 include Facebook::Messenger
 
 Bot.on :message do |message|
+  puts 'Message received'
   message.id          # => 'mid.1457764197618:41d102a3e1ae206a38'
   message.sender      # => { 'id' => '1008372609250235' }
   message.seq         # => 73
