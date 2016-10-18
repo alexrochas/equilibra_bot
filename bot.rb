@@ -52,7 +52,7 @@ Bot.on :postback do |postback|
 
   if postback.payload == 'VALORES'
     Bot.deliver(
-        recipient: message.sender,
+        recipient: postback.sender,
         message: {
             text: 'Primeira aula de graça!'
         }
@@ -61,7 +61,7 @@ Bot.on :postback do |postback|
 
   if postback.payload == 'HORARIOS'
     Bot.deliver(
-        recipient: message.sender,
+        recipient: postback.sender,
         message: {
             text: 'Seg a Sex das 8:00 as 22:00'
         }
@@ -70,7 +70,7 @@ Bot.on :postback do |postback|
 
   if postback.payload == 'BIRL'
     Bot.deliver(
-        recipient: message.sender,
+        recipient: postback.sender,
         message: {
             text: 'BIIIIIIIIIIRRRRRRLLLLLLLLLLLLLL'
         }
