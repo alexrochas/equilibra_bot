@@ -7,16 +7,16 @@ The main objective of this bot is to increase the interaction with students and 
 
 Made with [facebook-messenger](https://github.com/hyperoslo/facebook-messenger) gem.
 
-To test it, install [localtunnel](https://localtunnel.github.io/www/).
+To test it, install [ngrok](https://www.npmjs.com/package/ngrok).
 
 ```shell
-npm install -g localtunnel
+npm install -g ngrok 
 ```
 
-Once installed, run equilibrabot with **rackup** on root folder and initialize localtunnel.
+Once installed, run equilibrabot with **rackup** on root folder and initialize ngrok.
 
 ```
-lt --port 9292
+ngrok http 9292
 ```
 
 Now register the generated url to your facebook app on https://developers.facebook.com/apps/
