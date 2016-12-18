@@ -1,0 +1,20 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    facebook-messenger (0.10.0)
+      httparty (~> 0.13, >= 0.13.7)
+      rack (>= 1.6.4)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
+    multi_xml (0.5.5)
+    rack (2.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  facebook-messenger
+  rack
+
+BUNDLED WITH
+   1.12.5

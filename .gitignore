@@ -112,3 +112,6 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+
+# setup
+.setup.sh

@@ -3,6 +3,31 @@
 
 The main objective of this bot is to increase the interaction with students and goers of Equilibra Gym at Porto Alegre/RS.
 
+## Development
+
+Made with [facebook-messenger](https://github.com/hyperoslo/facebook-messenger) gem.
+
+To test it, install [localtunnel](https://localtunnel.github.io/www/).
+
+```shell
+npm install -g localtunnel
+```
+
+Once installed, run equilibrabot with **rackup** on root folder and initialize localtunnel.
+
+```
+lt --port 9292
+```
+
+Now register the generated url to your facebook app on https://developers.facebook.com/apps/
+
+Also, this bot uses environment variables for access facebook tokens.
+
+```
+export MESSENGER_ACCESS_TOKEN=EAADkaiN...
+export MESSENGER_VERIFY_TOKEN=my_awesome_token
+```
+
 ## Usage
 
 Open a new chat with [EquilibraBot](m.me/equilibrabot) and talk with him!
