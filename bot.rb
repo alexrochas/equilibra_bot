@@ -5,7 +5,7 @@ include Facebook::Messenger
 
 puts 'Started?'
 Bot.on :message do |message|
-  puts 'Message received'
+  puts "Received '#{message.inspect}' from #{message.sender}"
   message.id          # => 'mid.1457764197618:41d102a3e1ae206a38'
   message.sender      # => { 'id' => '1008372609250235' }
   message.seq         # => 73
@@ -13,34 +13,20 @@ Bot.on :message do |message|
   message.text        # => 'Hello, bot!'
   message.attachments # => [ { 'type' => 'image', 'payload' => { 'url' => 'https://www.example.com/1.jpg' } } ]
 
-  if message.text =~ /Olá!/
-    Bot.deliver(
-        recipient: message.sender,
-        message: {
-            text: 'Hello, human!'
-        }
-    )
-  end
-
-  if message.text =~ /Me conta da academia./
-    Bot.deliver(
-        recipient: message.sender,
-        message: {
-            attachment: {
-                type: 'template',
-                payload: {
-                    template_type: 'button',
-                    text: 'Então, sobre o que você quer saber?',
-                    buttons: [
-                        { type: 'postback', title: 'Horários', payload: 'HORARIOS' },
-                        { type: 'postback', title: 'Valores', payload: 'VALORES' },
-                        { type: 'postback', title: 'EquilibraBot?', payload: 'BIRL' }
-                    ]
-                }
-            }
-        }
-    )
-  end
+  message.reply(
+      attachment: {
+          type: 'template',
+          payload: {
+              template_type: 'button',
+              text: 'Olá humano, bem vindo ao EquilibraBot. Bot de informações da Academia Equilibra!',
+              buttons: [
+                  { type: 'postback', title: 'Horários?', payload: 'HORARIOS' },
+                  { type: 'postback', title: 'Valores?', payload: 'VALORES' },
+                  { type: 'postback', title: 'Promoções?', payload: 'PROMOCOES' }
+              ]
+          }
+      }
+  )
 end
 
 
@@ -51,33 +37,32 @@ Bot.on :postback do |postback|
   postback.payload   # => 'EXTERMINATE'
 
   if postback.payload == 'VALORES'
-    Bot.deliver(
-        recipient: postback.sender,
-        message: {
-            text: 'Primeira aula de graça!'
+    postback.reply(
+        attachment: {
+            type: 'image',
+            payload: {
+                url: 'https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/14492421_318178135212550_2909746139291345882_n.jpg?oh=6b9682b6aaea2256bab8ed2dd69329cc&oe=58EC0AB3'
+            }
         }
     )
   end
 
   if postback.payload == 'HORARIOS'
-    Bot.deliver(
-        recipient: postback.sender,
-        message: {
-            text: 'Seg a Sex das 8:00 as 22:00'
-        }
+    postback.reply(
+            text: 'Musculação é de Seg a Sex das 8:00 as 22:00, aos Sáb das 9h30 até as 14h!'
     )
   end
 
-  if postback.payload == 'BIRL'
-    Bot.deliver(
-        recipient: postback.sender,
-        message: {
-            text: 'BIIIIIIIIIIRRRRRRLLLLLLLLLLLLLL'
+  if postback.payload == 'PROMOCOES'
+    postback.reply(
+        attachment: {
+            type: 'image',
+            payload: {
+                url: 'https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/15284799_355862784777418_8437965891793097604_n.jpg?oh=de39a6d4964d530e5e52e958eb210d09&oe=58F0813E'
+            }
         }
     )
   end
 end
 
-Facebook::Messenger.config.access_token = ENV['MESSENGER_ACCESS_TOKEN']
-Facebook::Messenger.config.verify_token = ENV['MESSENGER_VERIFY_TOKEN']
-Facebook::Messenger::Subscriptions.subscribe
+Facebook::Messenger::Subscriptions.subscribe(access_token: ENV['ACCESS_TOKEN'])
